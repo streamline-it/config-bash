@@ -1,0 +1,27 @@
+---
+- name: check to see if bashrc exists
+  register: config_bash_bashrc_stats
+  loop:
+    "{{ config_bash_user_accts }}"
+  ansible.builtin.stat:
+    path: "{{ item['homedir'] }}/{{ config_bash_bashrc_filename }}"
+    get_attributes: true
+
+- name: ensure bashrc exists if it doesn't already exist
+  loop:
+    "{{ config_bash_bashrc_stats['results'] | ansible.builtin.zip(config_bash_user_accts) | list }} "
+  when:
+    - item[0]['stat']['exists'] == false 
+  ansible.builtin.file:
+    path: "{{ item[1]['homedir']/ }}/{{ config_bash_bashrc_filename }}"
+    state: file
+
+- name: ensure bash aliases are created
+  with_nested:
+    - "{{ config_bash_user_accts }}" 
+    - "{{ config_bash_bashrc_lines }}"
+  ansible.builtin.lineinfile:
+    path: "{{ item[0]['homedir'] }}/{{ config_bash_bashrc_filename }}"
+    regex: "{{ item[1]['regex'] }}"
+    line: "{{ item[1]['line'] }}"
+    state: present
