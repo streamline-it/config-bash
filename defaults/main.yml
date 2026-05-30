@@ -15,7 +15,9 @@ config_bash_bashrc_lines:
   - line: "alias la='ls -ah --color=auto'"
     regex: "alias la="
   - line: "alias l.='ls -d --color=auto"
-    regex: "alias l.="
+    regex: "alias l.=ls"
+  - line: "alias grep='grep --color=auto"
+    regex: "alias grep"
 
 # establish termcap colors
 config_bash_color_black: "$'\e[1;30m'"

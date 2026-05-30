@@ -79,6 +79,29 @@ None
 Example Playbook
 ----------------
 
+- name: test the config-bash role
+  hosts: node5
+  become: true
+
+  vars:
+
+    config_bash_user_accts:
+      - name: rich
+        homedir: /home/rich
+
+    config_bash_mb_choice: "{{ config_bash_color_blue }}"
+    config_bash_md_choice: "{{ config_bash_color_blue }}"
+    config_bash_me_choice: "{{ config_bash_reset_default }}"
+    config_bash_so_choice: "{{ config_bash_color_blue }}"
+    config_bash_se_choice: "{{ config_bash_reset_default }}"
+    config_bash_us_choice: "{{ config_bash_color_purple }}"
+    config_bash_ue_choice: "{{ config_bash_reset_default }}"
+    config_bash_reset_default: "'\e[0m'"
+
+  roles:
+
+    - name: config-bash
+
 License
 -------
 
