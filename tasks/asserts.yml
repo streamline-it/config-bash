@@ -1,0 +1,46 @@
+---
+
+- name: make sure key variables are defined/have proper values
+  ansible.builtin.assert:
+    that:
+      - config_bash_bashrc_filename is defined
+      - config_bash_bashrc_filename is truthy
+      - config_bash_user_accts is defined
+      - config_bash_user_accts is truthy
+      - config_bash_bashrc_lines is defined
+      - config_bash_bashrc_lines is truthy
+      - config_bash_color_black is defined
+      - config_bash_color_black is truthy
+      - config_bash_color_red is defined
+      - config_bash_color_red is truthy
+      - config_bash_color_green is defined
+      - config_bash_color_green is truthy
+      - config_bash_color_yellow is defined
+      - config_bash_color_yellow is truthy
+      - config_bash_color_blue is defined
+      - config_bash_color_blue is truthy
+      - config_bash_color_purple is defined
+      - config_bash_color_purple is truthy
+      - config_bash_color_cyan is defined
+      - config_bash_color_cyan is truthy
+      - config_bash_color_white is defined
+      - config_bash_color_white is truthy
+      - config_bash_reset_default is defined
+      - config_bash_reset_default is truthy
+      - config_bash_mb_choice is defined
+      - config_bash_mb_choice is truthy
+      - config_bash_md_choice is defined
+      - config_bash_md_choice is truthy
+      - config_bash_me_choice is defined
+      - config_bash_me_choice is truthy
+      - config_bash_so_choice is defined
+      - config_bash_so_choice is truthy
+      - config_bash_se_choice is defined
+      - config_bash_se_choice is truthy
+      - config_bash_us_choice is defined
+      - config_bash_us_choice is truthy
+      - config_bash_ue_choice is defined
+      - config_bash_ue_choice is truthy
+      - config_bash_bashrc_termcap_colors is defined
+      - config_bash_bashrc_termcap_colors is truthy
+    fail_msg: "Make sure key variables are defined and have proper values"

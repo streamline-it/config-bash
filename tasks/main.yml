@@ -1,5 +1,8 @@
 ---
 # tasks file for config-bash
+- name: call tasks to check asserts
+  ansible.builtin.include_tasks: asserts.yml
+
 - name: ensure bashrc is configured with aliases and .bashrc exists
   ansible.builtin.include_tasks: configure_aliases.yml
 

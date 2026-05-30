@@ -17,9 +17,7 @@
     state: file
 
 - name: ensure bash aliases are created
-  with_nested:
-    - "{{ config_bash_user_accts }}" 
-    - "{{ config_bash_bashrc_lines }}"
+  loop: "{{ config_bash_user_accts | product(config_bash_bashrc_lines) | list }}"
   ansible.builtin.lineinfile:
     path: "{{ item[0]['homedir'] }}/{{ config_bash_bashrc_filename }}"
     regex: "{{ item[1]['regex'] }}"

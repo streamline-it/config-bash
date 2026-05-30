@@ -1,8 +1,6 @@
 ---
 - name: ensure termcap lines exist in .bashrc
-  with_nested:
-    - "{{ config_bash_user_accts }}"
-    - "{{ config_bash_bashrc_termcap_colors }}"
+  loop: "{{ config_bash_user_accts | product(config_bash_bashrc_termcap_colors) | list }}"
   ansible.builtin.lineinfile:
     path: "{{ item[0]['homedir'] }}/{{ config_bash_bashrc_filename }}"
     regex: "{{ item[1]['regex'] }}"
